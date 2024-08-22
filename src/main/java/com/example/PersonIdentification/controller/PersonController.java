@@ -31,6 +31,9 @@ public class PersonController {
     public Person updatePerson(@RequestBody Person personUpdate, @PathVariable("id") int id ){
         Person person2 = person.findById(id).get();
         person2.setLastName(personUpdate.getLastName());
+        person2.setAddress(personUpdate.getAddress());
+        person2.setBlock(personUpdate.getBlock());
+        person2.setApartment(personUpdate.getApartment());
         person.save(person2);
         return person2;
     }
@@ -50,4 +53,12 @@ public class PersonController {
         Person person4 = person.findById(id).get();
         return person4.getAddress().getAddressName();
     }
+
+    @GetMapping("/person/{id}")
+    @ResponseBody
+    public Person getPersonId(@PathVariable("id") int id){
+        Person person4 = person.findById(id).get();
+        return person4;
+    }
+
 }
